@@ -1,0 +1,91 @@
+﻿@model List<AccountHw.Models.ViewModels.AccountViewModel>
+
+@{
+    ViewBag.Title = "Account";
+}
+
+<h2>Account</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>AccountViewModel</h4>
+        <hr />
+        @foreach (var item in Model)
+        {
+
+       
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => item.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => item.Category, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => item.Category, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => item.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => item.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => item.Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => item.Money, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => item.Money, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => item.Money, "", new { @class = "text-danger" })
+            </div>
+        </div>
+            break;
+        }
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>#</th>
+                    <th>類別</th>
+                    <th>日期</th>
+                    <th>金額</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Water</td>
+                        <td>@item.Category</td>
+                        <td>@item.Date</td>
+                        <td>@item.Money</td>
+                    </tr>
+
+                }
+
+
+
+               
+
+            </table>
+        </div>
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
